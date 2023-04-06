@@ -3,7 +3,10 @@ import subprocess
 from invoke import task
 
 from crawler import subreddit, submission, redditor, queue, comment
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 @task
 def upgrade_db(ctx):
@@ -15,13 +18,13 @@ def upgrade_db(ctx):
 
 
 @task
-def update_subreddit_details(ctx, subreddit_name="lamictal"):
+def update_subreddit_details(ctx, subreddit_name=os.environ.get('DEFAULT_SUBREDDIT_NAME')):
     """Update subreddit details"""
     subreddit.update_subreddit_details(subreddit_name)
 
 
 @task
-def update_submissions(ctx, subreddit_name="lamictal"):
+def update_submissions(ctx, subreddit_name=os.environ.get('DEFAULT_SUBREDDIT_NAME')):
     """Update submissions"""
     submission.store_submissions(subreddit_name)
 
@@ -45,7 +48,7 @@ def update_comments(ctx):
         comment.store_comments(submission_id)
 
 @task
-def crawl_subreddit(ctx, subreddit_name="lamictal"):
+def crawl_subreddit(ctx, subreddit_name=os.environ.get('DEFAULT_SUBREDDIT_NAME')):
     upgrade_db(ctx)
     update_subreddit_details(ctx, subreddit_name)
     update_submissions(ctx, subreddit_name)

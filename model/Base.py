@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Create a database connection
-engine = create_engine("sqlite:///lamictal.sqlite")
+engine = create_engine("sqlite:///reddixplorer.sqlite")
 Session = sessionmaker(bind=engine)
 
 # Define a base class for all models

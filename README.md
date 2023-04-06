@@ -1,4 +1,4 @@
-# LamiXplorer
+# ReddiXplorer
 
 This project is a Python-based Reddit crawler that uses PRAW, Pushshift API, SQLite and Alembic to collect data from a specified subreddit.
 
@@ -24,7 +24,6 @@ pip install -r requirements.txt
 
 ## Usage
 To crawl a subreddit, run:
-
 
 ```
 invoke crawl_subreddit --subreddit_name=<subreddit_name>
